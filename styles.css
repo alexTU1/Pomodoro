@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+section{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.time{
+    display: inline-flex;
+    font-size: 10em;
+}
+
+
+
