@@ -20,6 +20,24 @@ window.onload = () => {
 let mins = minsToWork - 1;
 let secs = 59;
 let interval;
+let isReset = false;
+
+let timeHandler = () => {
+    seconds.innerHTML = secs;
+    minutes.innerHTML = mins;
+    secs--;
+    
+    if(secs === 0){
+        mins = mins - 1;
+        secs = 59;
+    }
+    if(secs < 10) {
+        secs = '0' + secs ;
+    }
+    if(mins < 0){
+        mins = 0;
+    }   
+}
 
 /**
  * (1) Minutes goes to 24, secs goes to 59
@@ -27,21 +45,6 @@ let interval;
  * (3) Mins value decrease every time secs === 0
  */
 function play(){
-    let timeHandler = () => {
-        seconds.innerHTML = secs;
-        minutes.innerHTML = mins;
-        secs--;
-        if(secs === 0){
-            mins = mins - 1;
-            secs = 59;
-        }
-        if(secs < 10) {
-            secs = '0' + secs ;
-        }
-        if(mins < 0){
-            mins = 0;
-        }
-    }
       interval = setInterval(timeHandler, 1000);  
 }
 
@@ -50,6 +53,19 @@ function play(){
  */
 function pause(){
     clearInterval(interval);
+ }
+
+ /**
+  * Resets timer to 25:00
+  */
+ function reset(){
+    window.clearInterval(interval);
+    minutes.innerHTML = minsToWork;
+    seconds.innerHTML = secsToWork;
+    mins = 24;
+    secs = 59;
+    isReset = true;
+
  }
 
 
