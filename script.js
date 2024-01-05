@@ -1,11 +1,12 @@
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
-
+let displayText = document.getElementById('work-break-text')
 
 let minsToWork = 25;
 //total amount of seconds
 let time = minsToWork * 60;
 let secsToWork = time%60;
+displayText.innerHTML = "Get to Work!";
 
 //adding zero placeholder
 if(secsToWork < 10) {
@@ -74,6 +75,7 @@ function pause(){
   */
  function workTime(){
     minsToWork = 25;
+    displayText.innerHTML = 'Get to Work!';
     reset();
  }
 
@@ -82,6 +84,7 @@ function pause(){
   */
  function breakTime(){
     minsToWork = 5;
+    displayText.innerHTML = 'Take it easy.';
     reset();
  }
 
@@ -90,6 +93,7 @@ function pause(){
   */
  function longBreakTime(){
     minsToWork = 15;
+    displayText.innerHTML = 'Uhh... make a sandwich or something...';
     reset();
  }
  
