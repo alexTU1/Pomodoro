@@ -29,7 +29,7 @@ let timeHandler = () => {
     minutes.innerHTML = mins;
     secs--;
     
-    if(secs === 0){
+    if(secs < 0){
         mins = mins - 1;
         secs = 59;
     }
