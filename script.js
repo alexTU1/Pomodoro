@@ -1,6 +1,7 @@
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 
+
 let minsToWork = 25;
 //total amount of seconds
 let time = minsToWork * 60;
@@ -56,17 +57,48 @@ function pause(){
  }
 
  /**
-  * Resets timer to 25:00
+  * Resets timer to time according to specified 
+  * timer option 'work, break, long break'
   */
  function reset(){
     window.clearInterval(interval);
     minutes.innerHTML = minsToWork;
     seconds.innerHTML = secsToWork;
-    mins = 24;
+    mins = minsToWork - 1;
     secs = 59;
     isReset = true;
-
  }
+
+ /**
+  * Sets Countdown for work --> 25 mins
+  */
+ function workTime(){
+    minsToWork = 25;
+    reset();
+ }
+
+ /**
+  * Sets Countdown for break --> 5 mins
+  */
+ function breakTime(){
+    minsToWork = 5;
+    reset();
+ }
+
+ /**
+  * Sets Countdown for long break --> 15 mins
+  */
+ function longBreakTime(){
+    minsToWork = 15;
+    reset();
+ }
+ 
+
+
+
+
+
+
 
 
 
