@@ -11,9 +11,9 @@
     <section>
         <div class="container">
             <div class="options">
-                <button id="work" onclick="workTime()">Work</button>
-                <button id="break" onclick="breakTime()">Break</button>
-                <button id="long-break" onclick="longBreakTime()">Long Break</button>
+                <button id="work" onclick="workOrBreak(25, 'Get to Work!')">Work</button>
+                <button id="break" onclick="workOrBreak(5, 'Take a Break!')">Break</button>
+                <button id="long-break" onclick="workOrBreak(15, 'Uhh... make a sandwich or something...')">Long Break</button>
             </div>
             <h1>Pomodoro Timer</h1>
             <div class="time">

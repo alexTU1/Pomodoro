@@ -1,6 +1,6 @@
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
-let displayText = document.getElementById('work-break-text')
+let displayText = document.getElementById('work-break-text');
 
 let minsToWork = 25;
 //total amount of seconds
@@ -71,29 +71,13 @@ function pause(){
  }
 
  /**
-  * Sets Countdown for work --> 25 mins
+  * 
+  * @param {*} workOrBreakMins How many minutes for each work/break option
+  * @param {*} descriptText text for each work/break option
   */
- function workTime(){
-    minsToWork = 25;
-    displayText.innerHTML = 'Get to Work!';
-    reset();
- }
-
- /**
-  * Sets Countdown for break --> 5 mins
-  */
- function breakTime(){
-    minsToWork = 5;
-    displayText.innerHTML = 'Take it easy.';
-    reset();
- }
-
- /**
-  * Sets Countdown for long break --> 15 mins
-  */
- function longBreakTime(){
-    minsToWork = 15;
-    displayText.innerHTML = 'Uhh... make a sandwich or something...';
+ function workOrBreak(workOrBreakMins, descriptText){
+    minsToWork = workOrBreakMins;
+    displayText.innerHTML = descriptText;
     reset();
  }
  
