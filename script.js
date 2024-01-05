@@ -5,18 +5,13 @@ let displayText = document.getElementById('work-break-text');
 let minsToWork = 25;
 //total amount of seconds
 let time = minsToWork * 60;
-let secsToWork = time%60;
+let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
-
-//adding zero placeholder
-if(secsToWork < 10) {
-    secsToWork = '0' + secsToWork ;
-}
 
 //time is set to 25:00 on window load and reload
 window.onload = () => {
-    minutes.innerHTML = Math.floor(time/60);
-    seconds.innerHTML = secsToWork;
+    minutes.innerHTML = Math.floor(time / 60);
+    seconds.innerHTML = '0' + secsToWork;
 }
 
 let mins = minsToWork - 1;
@@ -24,6 +19,9 @@ let secs = 59;
 let interval;
 let isReset = false;
 
+/**
+ * Countdown Function
+ */
 let timeHandler = () => {
     seconds.innerHTML = secs;
     minutes.innerHTML = mins;
@@ -42,9 +40,7 @@ let timeHandler = () => {
 }
 
 /**
- * (1) Minutes goes to 24, secs goes to 59
- * (2) Secs value decrease every second
- * (3) Mins value decrease every time secs === 0
+ * Start timer
  */
 function play(){
       interval = setInterval(timeHandler, 1000);  
@@ -64,7 +60,7 @@ function pause(){
  function reset(){
     window.clearInterval(interval);
     minutes.innerHTML = minsToWork;
-    seconds.innerHTML = secsToWork;
+    seconds.innerHTML = '0' + secsToWork;
     mins = minsToWork - 1;
     secs = 59;
     isReset = true;
