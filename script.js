@@ -1,6 +1,20 @@
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 let displayText = document.getElementById('work-break-text');
+let darkLightModeButton = document.getElementById('dark-light-mode');
+
+/**
+ * Dark Mode toggle
+ */
+let darkLight = () =>{
+    let body = document.body;
+    body.classList.toggle("dark-mode");
+    if (darkLightModeButton.innerHTML === "Dark Mode") {
+        darkLightModeButton.innerHTML = "Light Mode";
+      } else {
+        darkLightModeButton.innerHTML = "Dark Mode";
+      }
+};
 
 let minsToWork = 25;
 //total amount of seconds

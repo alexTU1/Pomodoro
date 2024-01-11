@@ -15,5 +15,10 @@ section{
     font-size: 10em;
 }
 
+.dark-mode{
+    background-color: black;
+    color: white;
+}
+
 
 
