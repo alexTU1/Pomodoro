@@ -54,6 +54,7 @@ if (event.target == overlay){
 }
 //applies changes made in modal settings
 function applyChanges(){
+    //if user puts nothing and presses button then timer goes to 25:00
     if(document.getElementById('w-time').value == 0 || document.getElementById('w-time').value == ''){
         document.getElementById('w-time').value = 25;
     }
