@@ -27,6 +27,7 @@ if (event.target == overlay){
 }
 }
 
+
 // /**
 //  * Dark Mode toggle
 //  */
@@ -43,15 +44,22 @@ if (event.target == overlay){
 
 
 
-let minsToWork = 25;
+var minsToWork = document.getElementById('w-time').value;
 //total amount of seconds
 let time = minsToWork * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
+//applies changes made in modal settings
+function applyChanges(){
+    minsToWork = document.getElementById('w-time').value;
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+    reset();
+}
 
 //time is set to 25:00 on window load and reload
 window.onload = () => {
-    minutes.innerHTML = Math.floor(time / 60);
+    minutes.innerHTML = 25;
     seconds.innerHTML = '0' + secsToWork;
 }
 
