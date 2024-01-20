@@ -2,19 +2,46 @@ let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 let displayText = document.getElementById('work-break-text');
 let darkLightModeButton = document.getElementById('dark-light-mode');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay')
 
 /**
- * Dark Mode toggle
+ * Modal
  */
-let darkLight = () =>{
-    let body = document.body;
-    body.classList.toggle("dark-mode");
-    if (darkLightModeButton.innerHTML === "Dark Mode") {
-        darkLightModeButton.innerHTML = "Light Mode";
-      } else {
-        darkLightModeButton.innerHTML = "Dark Mode";
-      }
-};
+
+//opens modal box
+function openModal(){
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+}
+//closes modal box
+function closeModal() {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+}
+//closes modal box when you click anywhere outside of modal
+window.onclick = function(event){
+if (event.target == overlay){
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+}
+}
+
+// /**
+//  * Dark Mode toggle
+//  */
+// let darkLight = () =>{
+//     let body = document.body;
+//     body.classList.toggle("dark-mode");
+//     darkLightModeButton.classList.toggle("btn");
+//     if (darkLightModeButton.innerHTML === "Dark Mode") {
+//         darkLightModeButton.innerHTML = "Light Mode";
+//       } else {
+//         darkLightModeButton.innerHTML = "Dark Mode";
+//       }
+// };
+
+
 
 let minsToWork = 25;
 //total amount of seconds

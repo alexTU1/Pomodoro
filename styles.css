@@ -2,12 +2,18 @@
     margin: 0;
     padding: 0;
 }
+
+header{
+    height: 0;
+}
+
 section{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index: 0;
 }
 
 .time{
@@ -18,7 +24,45 @@ section{
 .dark-mode{
     background-color: black;
     color: white;
+    transition: 250ms ease-in-out;
 }
 
+.btn{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.modal-container{
+    display: flex;
+    justify-content:center;
+    height: 100%;
+}
+
+.modal{
+    height: 300px;
+    width: 400px;
+    background-color:cornflowerblue;
+    z-index: 2;
+    overflow:auto;
+    border-radius: 10px;
+    position: absolute;
+    padding: 20px; 
+    margin: 50px;
+}
+
+.overlay{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.hidden{
+    display: none;
+}
 
 

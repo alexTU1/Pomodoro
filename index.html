@@ -8,7 +8,33 @@
 </head>
 <body>
     <header> Do it Diligently </header>
-    <button id="dark-light-mode" onclick="darkLight()">Dark Mode</button>
+    <!-- <button id="dark-light-mode" class="btn" onclick="darkLight()">Dark Mode</button> -->
+    <div class="modal-container">
+        <div  id="modal-stuff" class="modal hidden">
+            <h2>this is the settings</h2>
+            <ul>
+                <li>
+                    <label for="w-time">Work</label>
+                    <input type="number" id="w-time"  value="25" step="1" min="1" max="90">
+                </li>
+                <li>
+                    <label for="b-time">Break</label>
+                    <input type="number" id="b-time"  value="5" step="1" min="1" max="90">
+                </li>
+                <li>
+                    <label for="lb-time">Long Break</label>
+                    <input type="number" id="lb-time" value="15" step="1" min="1" max="90">
+                </li>   
+            </ul>
+    
+            <div class="buttons">
+                <button>reset</button>
+                <button id="close" onclick="closeModal()">close</button>
+                <button>apply changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="overlay hidden"></div>
     <section>
         <div class="container">
             <div class="options">
@@ -27,6 +53,7 @@
                 <button id="play" onclick="play()">Play</button>
                 <button id="pause" onclick="pause()">Pause</button>
                 <button id="reset" onclick="reset()">Reset</button>
+                <button id="settings" onclick="openModal()">Settings</button>
             </div>
         </div>
     </section>
