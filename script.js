@@ -5,27 +5,7 @@ let darkLightModeButton = document.getElementById('dark-light-mode');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay')
 
-/**
- * Modal
- */
 
-//opens modal box
-function openModal(){
-    modal.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-}
-//closes modal box
-function closeModal() {
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-}
-//closes modal box when you click anywhere outside of modal
-window.onclick = function(event){
-if (event.target == overlay){
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-}
-}
 
 
 // /**
@@ -49,8 +29,34 @@ var minsToWork = document.getElementById('w-time').value;
 let time = minsToWork * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
+
+/**
+ * Modal
+ */
+
+//opens modal box
+function openModal(){
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+}
+//closes modal box
+function closeModal() {
+    
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+}
+//closes modal box when you click anywhere outside of modal
+window.onclick = function(event){
+if (event.target == overlay){
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+}
+}
 //applies changes made in modal settings
 function applyChanges(){
+    if(document.getElementById('w-time').value == 0 || document.getElementById('w-time').value == ''){
+        document.getElementById('w-time').value = 25;
+    }
     minsToWork = document.getElementById('w-time').value;
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
