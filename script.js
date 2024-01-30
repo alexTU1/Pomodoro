@@ -17,7 +17,7 @@ let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
 /**
- * Modal
+ * Modal =================================================================================
  */
 
 //opens modal box
@@ -55,7 +55,7 @@ function applyChanges(){
     minsToBreak = bTime.value;
     minsToLongBreak = lbTime.value;
     //sets changes 
-    workOrBreak(minsToWork, "Get to Work!");
+    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
     workOrBreak(minsToBreak, "Take a Break!");
     workOrBreak(minsToWork, "Get to Work!");
     //closes modal after making changes
@@ -64,6 +64,21 @@ function applyChanges(){
     console.log(time);
     reset();
 }
+
+//reset user settings to original numbers
+function resetSettings(){
+    wTime.value = 25;
+    bTime.value = 5;
+    lbTime.value = 15;
+    minsToWork = wTime.value;
+    minsToBreak = bTime.value;
+    minsToLongBreak = lbTime.value;
+    //sets changes after resetting to original numbers 
+    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
+    workOrBreak(minsToBreak, "Take a Break!");
+    workOrBreak(minsToWork, "Get to Work!"); 
+}
+// ================================================================================= Modal
 
 let wrkBtn = document.getElementById('work');
 let brkBtn = document.getElementById('break');
@@ -82,6 +97,11 @@ let mins = minutesChecker - 1;
 let secs = 59;
 let interval;
 let isReset = false;
+
+
+/**
+ * Timer =========================================================================
+ */
 
 /**
  * Countdown Function
@@ -111,7 +131,7 @@ let timeHandler = () => {
  * Start timer
  */
 function play(){
-      interval = setInterval(timeHandler, 1000);  
+    interval = setInterval(timeHandler, 1000);  
 }
 
 /**
@@ -134,6 +154,7 @@ function pause(){
     time = minutesChecker * 60;
     isReset = true;
  }
+ // ========================================================================= Timer
 
  /**
   * 
