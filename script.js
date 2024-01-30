@@ -12,7 +12,7 @@ var minsToBreak = 5;
 var minsToLongBreak = 15;
 var minutesChecker = 25;
 //total amount of seconds
-let time = minsToWork * 60;
+let time = minutesChecker * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
@@ -61,6 +61,7 @@ function applyChanges(){
     //closes modal after making changes
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
+    console.log(time);
     reset();
 }
 
@@ -89,6 +90,7 @@ let timeHandler = () => {
     seconds.innerHTML = secs;
     minutes.innerHTML = mins;
     secs--;
+    time--;
     
     if(secs < 0){
         mins = mins - 1;
@@ -99,7 +101,10 @@ let timeHandler = () => {
     }
     if(mins < 0){
         mins = 0;
-    }   
+    } 
+    if(time == 0){
+        pause();
+    }
 }
 
 /**
@@ -126,6 +131,7 @@ function pause(){
     seconds.innerHTML = '0' + secsToWork;
     mins = minutesChecker - 1;
     secs = 59;
+    time = minutesChecker * 60;
     isReset = true;
  }
 
@@ -139,3 +145,5 @@ function pause(){
     displayText.innerHTML = descriptText;
     reset();
  }
+
+ 
