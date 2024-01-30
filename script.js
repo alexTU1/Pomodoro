@@ -1,15 +1,11 @@
-/**
- * TODO: Changes do apply once configured in settings but
- * TODO: Corresponding button has to be clicked before changes show on screen 
- * TODO 1) Make sure that changes apply after pressing apply changes button
- */
-
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 let displayText = document.getElementById('work-break-text');
 const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay')
-
+const overlay = document.querySelector('.overlay');
+let wTime = document.getElementById('w-time');
+let bTime = document.getElementById('b-time');
+let lbTime = document.getElementById('lb-time');
 
 var minsToWork = 25;
 var minsToBreak = 5;
@@ -30,8 +26,7 @@ function openModal(){
     overlay.classList.remove('hidden');
 }
 //closes modal box
-function closeModal() {
-    
+function closeModal() {  
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
 }
@@ -46,31 +41,35 @@ if (event.target == overlay){
 //applies changes made in modal settings
 function applyChanges(){
     //if user puts nothing and presses button then timer goes to 25:00
-    if(document.getElementById('w-time').value == 0 || document.getElementById('w-time').value == ''){
-        document.getElementById('w-time').value = 25;
+    if(wTime.value == 0 || wTime.value == ''){
+        wTime.value = 25;
     }
-    if(document.getElementById('b-time').value == 0 || document.getElementById('b-time').value == ''){
-        document.getElementById('b-time').value = 5;
+    if(bTime.value == 0 || bTime.value == ''){
+        bTime.value = 5;
     }
-    if(document.getElementById('lb-time').value == 0 || document.getElementById('lb-time').value == ''){
-        document.getElementById('lb-time').value = 15;
+    if(lbTime.value == 0 || lbTime.value == ''){
+        lbTime.value = 15;
     }
     //minutes can now be user specific
-    minsToWork = document.getElementById('w-time').value;
-    minsToBreak = document.getElementById('b-time').value;
-    minsToLongBreak = document.getElementById('lb-time').value;
+    minsToWork = wTime.value;
+    minsToBreak = bTime.value;
+    minsToLongBreak = lbTime.value;
+    //sets changes 
+    workOrBreak(minsToWork, "Get to Work!");
+    workOrBreak(minsToBreak, "Take a Break!");
+    workOrBreak(minsToWork, "Get to Work!");
     //closes modal after making changes
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
     reset();
 }
 
-let wrk = document.getElementById('work');
-let brk = document.getElementById('break');
-let longBrk = document.getElementById('long-break');
-wrk.onclick = () => {workOrBreak(minsToWork, "Get to Work!");}
-brk.onclick = () => {workOrBreak(minsToBreak, "Take a Break!");}
-longBrk.onclick = () => {workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");}
+let wrkBtn = document.getElementById('work');
+let brkBtn = document.getElementById('break');
+let longBrkBtn = document.getElementById('long-break');
+wrkBtn.onclick = () => {workOrBreak(minsToWork, "Get to Work!");}
+brkBtn.onclick = () => {workOrBreak(minsToBreak, "Take a Break!");}
+longBrkBtn.onclick = () => {workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");}
 
 //time is set to 25:00 on window load and reload
 window.onload = () => {

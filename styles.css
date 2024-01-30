@@ -49,7 +49,7 @@ section{
     border-radius: 10px;
     position: absolute;
     padding: 20px; 
-    margin: 50px;
+    margin: 330px;
 }
 
 .overlay{
@@ -65,4 +65,7 @@ section{
     display: none;
 }
 
-
+input[type="number"]:not([step="any"])::-webkit-inner-spin-button,
+input[type="number"]:not([step="any"])::-webkit-outer-spin-button {
+  opacity: 1;
+}
