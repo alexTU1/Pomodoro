@@ -13,7 +13,7 @@ section{
     justify-content: center;
     align-items: center;
     text-align: center;
-    z-index: 0;
+    z-index: 1;
 }
 
 .time{
@@ -49,7 +49,8 @@ section{
     border-radius: 10px;
     position: absolute;
     padding: 20px; 
-    margin: 330px;
+    top:50%;
+    transform: translateY(-50%);
 }
 
 .overlay{
@@ -63,6 +64,7 @@ section{
 
 .hidden{
     display: none;
+    z-index: 0;
 }
 
 input[type="number"]:not([step="any"])::-webkit-inner-spin-button,
