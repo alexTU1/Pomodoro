@@ -16,6 +16,28 @@ let time = minutesChecker * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
+let wrkBtn = document.getElementById('work');
+let brkBtn = document.getElementById('break');
+let longBrkBtn = document.getElementById('long-break');
+wrkBtn.onclick = () => {
+    workOrBreak(minsToWork, "Get to Work!");
+    wrkBtn.classList.add('active');
+    brkBtn.classList.remove('active');
+    longBrkBtn.classList.remove('active');
+}
+brkBtn.onclick = () => {
+    workOrBreak(minsToBreak, "Take a Break!");
+    wrkBtn.classList.remove('active');
+    brkBtn.classList.add('active');
+    longBrkBtn.classList.remove('active');
+}
+longBrkBtn.onclick = () => {
+    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
+    wrkBtn.classList.remove('active');
+    brkBtn.classList.remove('active');
+    longBrkBtn.classList.add('active');
+}
+
 /**
  *====================================== Modal ===========================================
  */
@@ -37,6 +59,50 @@ if (event.target == overlay){
     overlay.classList.add('hidden');
 }
 }
+
+//animate modal glide in
+let settingBtn = document.getElementById('settings');
+settingBtn.addEventListener('click', () =>{
+
+    modal.animate(
+        { transform: 'translateY(-50%)',
+     top: '50%', opacity: '1'}, 
+      {
+        duration: 500,
+        fill: 'both',
+        iterations: 1
+      });
+});
+
+//for some reason this allows for the glide in to work continuously but it does not glide out like I thought it would.
+let closeBtn = document.getElementById('close')
+closeBtn.addEventListener('click', () =>{
+
+    modal.animate(
+        { transform: 'translateY(50%)',
+     top: '-30%', opacity: '0'}, 
+      {
+        duration: 500,
+        fill: 'both',
+        iterations: 1
+      });
+});
+
+let acBtn = document.getElementById('apply-changes')
+acBtn.addEventListener('click', () =>{
+
+    modal.animate(
+        { transform: 'translateY(50%)',
+     top: '-30%', opacity: '0'}, 
+      {
+        duration: 500,
+        fill: 'both',
+        iterations: 1
+      });
+});
+
+
+
 
 //applies changes made in modal settings
 function applyChanges(){
@@ -68,12 +134,18 @@ function applyChanges(){
     workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
     workOrBreak(minsToBreak, "Take a Break!");
     workOrBreak(minsToWork, "Get to Work!");
+    //temporarily fixes issue where after applying changes the focus on the work/break mode choice is still highlighted but the mode is now changed back to work mode.
+    wrkBtn.classList.add('active');
+    brkBtn.classList.remove('active');
+    longBrkBtn.classList.remove('active');
     //closes modal after making changes
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
     console.log(time);
     reset();
 }
+
+
 
 //reset user settings to original numbers
 function resetSettings(){
@@ -112,27 +184,6 @@ function subOneLB(){
 }
 //========================================== Modal =======================================
 
-let wrkBtn = document.getElementById('work');
-let brkBtn = document.getElementById('break');
-let longBrkBtn = document.getElementById('long-break');
-wrkBtn.onclick = () => {
-    workOrBreak(minsToWork, "Get to Work!");
-    wrkBtn.classList.add('active');
-    brkBtn.classList.remove('active');
-    longBrkBtn.classList.remove('active');
-}
-brkBtn.onclick = () => {
-    workOrBreak(minsToBreak, "Take a Break!");
-    wrkBtn.classList.remove('active');
-    brkBtn.classList.add('active');
-    longBrkBtn.classList.remove('active');
-}
-longBrkBtn.onclick = () => {
-    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
-    wrkBtn.classList.remove('active');
-    brkBtn.classList.remove('active');
-    longBrkBtn.classList.add('active');
-}
 
 //time is set to 25:00 on window load and reload
 window.onload = () => {
@@ -174,7 +225,7 @@ let timeHandler = () => {
     }
 }
 //Start timer
-function play(){
+function playTimer(){
     interval = setInterval(timeHandler, 1000);  
 }
 

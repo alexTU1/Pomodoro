@@ -38,38 +38,55 @@ section{
      background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-size: cover;    
+}
+
+section > .container{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    height: 50%;
+
 }
 
 .option-btn{
     color: white;
-    border: white 2px solid;
+    border: white 1px solid;
     border-radius: 30px;
     background: transparent;
     font-family: 'Inter', sans-serif;
     font-weight: 100;
+    font-size: 1.4em;
     padding: 10px;
     margin-inline: 30px;
-    width: 100px;
+    width: 140px;
     cursor: pointer;
-    transition: all 250ms ease-in-out;
+    transition: all 180ms ease-in-out;
+    letter-spacing: 4px;
 }
 
-.option-btn:hover{
+.options > button:last-child{
+    width: 200px;
+}
+
+.option-btn:hover,
+.modal-buttons>button:hover{
     background-color: white;
-    color:rgba(217, 217, 217, 0.9);
+    color:rgba(79, 79, 79, 0.8);
+    font-weight: 200;
 }
 
 .active{
     background-color: white;
-    color:rgba(217, 217, 217, 0.9);
+    color:rgba(79, 79, 79, 0.8);
+    font-weight: 200;
 }
 
 .time{
     display: inline-flex;
     padding: 0;
     margin: 0;
+    justify-content: center;
 }
 
 .time > p{
@@ -77,6 +94,7 @@ section{
     font-family: 'Inter', sans-serif;
     font-weight: 100;
     font-size: 15em;
+    line-height: 1em;
 }  
 
 #work-break-text{
@@ -85,61 +103,164 @@ section{
     font-weight: 100;
 }
 
-#modal-stuff > h2{
+#modal-stuff > .set-contain > h2{
     font-family: 'Inter', sans-serif;
     font-weight: 100;
+    font-size: 2.5em;
+    letter-spacing: 4px;
 }
 
 .modal-container{
     display: flex;
-    justify-content:center;
+    justify-content: center;
     height: 100%;
 }
 
 .modal{
-    height: 300px;
-    width: 400px;
+    height: 500px;
+    width: 800px;
     color: white;
     background-color: #282828;
     z-index: 2;
     overflow:auto;
-    border-radius: 10px;
+    border-radius: 20px;
     position: absolute;
-    padding: 20px; 
-    top:50%;
-    transform: translateY(-50%);
+    padding: 60px; 
+    top:-30%;
+    opacity: 0;
+    transform: translateY(50%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.modal > ul{
+/* .slide-in{
+    top:50%;
+   opacity: 1;
+   transform: translateY(-50%);
+   transition: transform .3s ease-in, opacity .3s ease-in;
+} */
+
+
+
+.modal-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal-buttons > button{
+    color: white;
+    border: white 1px solid;
+    border-radius: 30px;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 1.2em;
+    padding: 10px;
+    width: 140px;
+    cursor: pointer;
+    transition: all 180ms ease-in-out;
+    letter-spacing: 4px;
+}
+
+.modal-buttons > button:last-child{
+    width: 240px;
+    border: rgb(89, 179, 139) 1px solid;
+    color: rgb(89, 179, 139);
+}
+
+.modal-buttons > button:last-child:hover{
+    background: rgb(89, 179, 139);
+    color: white;
+}
+
+.set-contain{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.display-settings{
+    width: 100%;
+    height: 50px;
+    background-color: rgba(217, 217, 217, 0.3);
+    border-radius: 12px;
+}
+
+.modal > .set-contain > ul{
     display:flex;
     justify-content: space-between;
 }
 
-.modal > ul > li{
+.modal > .set-contain > ul > li{
     list-style: none;
     display: flex;
     flex-direction: column;
-    width: 100px;
-    height: 100px;
+    width: 220px;
     text-align: center;
 }
 
-.modal > ul > li > input[type=number]{
-    height: 100px;
+.modal > .set-contain > ul > li > input[type=number]{
+    height: 170px;
     border-top: white solid 2px;
     border-left:white solid 2px;
     border-right: white solid 2px;
     border-bottom: none;
-    border-radius: 5px 5px 0 0;
+    border-radius: 12px 12px 0 0;
     background-color: rgba(217, 217, 217, 0.3);
     text-align: center;
+    padding-top: 40px;
     color: white;
     font-family: 'Inter', sans-serif;
     font-weight: 200;
-    font-size: 4em;
+    font-size: 9em;
+    box-sizing: border-box;
+}
+
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > .arr-btn{
+    width: 50%;
+    background-color: white;
+    color: rgb(79, 79, 79, 0.5);
+    border: none;
+    font-size: 2em;
+}
+
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #down-arr-w{
+    border-radius: 0 0 0 12px;
+}
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #up-arr-w{
+    border-radius: 0 0 12px 0;
+}
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #down-arr-b{
+    border-radius: 0 0 0 12px;
+}
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #up-arr-b{
+    border-radius: 0 0 12px 0;
+}
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #down-arr-lb{
+    border-radius: 0 0 0 12px;
+}
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns > #up-arr-lb{
+    border-radius: 0 0 12px 0;
+}
+
+.modal-container > .modal > .set-contain > ul > li > .arrow-btns{
+    display: flex;
+    height: 50px;
+}
+
+
+.modal-container > .modal > .set-contain > ul > li > label{
+    background-color: rgba(217, 217, 217, 0.3);
+    border-left:white solid 2px;
+    border-right: white solid 2px;
+    height: 60px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    letter-spacing: 5px;
 }
 
 input::-webkit-outer-spin-button,

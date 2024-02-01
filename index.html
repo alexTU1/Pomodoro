@@ -15,38 +15,42 @@
     </header>
     <div class="modal-container">
         <div  id="modal-stuff" class="modal hidden">
-            <h2>SETTINGS</h2>
-            <ul>
-                <li>
-                    <input type="number" id="w-time"   step="1" min="1" max="90">
-                    <label for="w-time">Work</label>
-                    <div class="arrow-btns">
-                        <button id="down-arr-w" onclick="subOneW()">-</button>
-                        <button id="up-arr-w" onclick="addOneW()">+</button>
-                    </div>
-                </li>
-                <li>
-                    <input type="number" id="b-time"   step="1" min="1" max="90">
-                    <label for="b-time">Break</label>
-                    <div class="arrow-btns">
-                        <button id="down-arr-b" onclick="subOneB()">-</button>
-                        <button id="up-arr-b" onclick="addOneB()">+</button>                  
-                    </div>
-                </li>
-                <li>
-                    <input type="number" id="lb-time"  step="1" min="1" max="90">
-                    <label for="lb-time">Long Break</label>
-                    <div class="arrow-btns">
-                        <button id="down-arr-lb" onclick="subOneLB()">-</button>
-                        <button id="up-arr-lb" onclick="addOneLB()">+</button>
-                    </div>
-                </li>   
-            </ul>
+            <div class="set-contain">
+                <h2>SETTINGS</h2>
+                <ul>
+                    <li>
+                        <input type="number" id="w-time"   step="1" min="1" max="90">
+                        <label for="w-time">Work</label>
+                        <div class="arrow-btns">
+                            <button class="arr-btn" id="down-arr-w" onclick="subOneW()">-</button>
+                            <button class="arr-btn" id="up-arr-w" onclick="addOneW()">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="number" id="b-time"   step="1" min="1" max="90">
+                        <label for="b-time">Break</label>
+                        <div class="arrow-btns">
+                            <button class="arr-btn" id="down-arr-b" onclick="subOneB()">-</button>
+                            <button class="arr-btn" id="up-arr-b" onclick="addOneB()">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="number" id="lb-time"  step="1" min="1" max="90">
+                        <label for="lb-time">Long Break</label>
+                        <div class="arrow-btns">
+                            <button class="arr-btn" id="down-arr-lb" onclick="subOneLB()"><p>-</p></button>
+                            <button class="arr-btn" id="up-arr-lb" onclick="addOneLB()">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="display-settings"></div>
     
-            <div class="buttons">
-                <button onclick="resetSettings()">reset</button>
-                <button id="close" onclick="closeModal()">close</button>
-                <button onclick="applyChanges()">apply changes</button>
+            <div class="modal-buttons">
+                <button onclick="resetSettings()">Reset</button>
+                <button id="close" onclick="closeModal()">Close</button>
+                <button id="apply-changes" onclick="applyChanges()">Apply changes</button>
             </div>
         </div>
     </div>
@@ -63,9 +67,8 @@
                 <p id="semicol"><span>:</span></p>
                 <p id="secs"></p>  
             </div>
-            
             <div class="play-pause-reset">
-                <button id="play" onclick="play()"><img src="assets/Play Btn.svg" alt="Play Button"></button>
+                <button id="play" onclick="playTimer()"><img src="assets/Play Btn.svg" alt="Play Button"></button>
                 <button id="pause" onclick="pause()"><img src="assets/Pause Btn.svg" alt="Pause Button"></button>
                 <button id="reset" onclick="reset()"><img src="assets/Reset Btn.svg" alt="Reset Button"></button>
                 <button id="settings" onclick="openModal()"><img src="assets/Settings Btn.svg" alt="Settings Button"></button>
