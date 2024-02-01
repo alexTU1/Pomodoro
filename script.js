@@ -8,7 +8,7 @@ let bTime = document.getElementById('b-time');
 let lbTime = document.getElementById('lb-time');
 
 var minsToWork = 25;
-var minsToBreak = 5;
+var minsToBreak = '0' + 5;
 var minsToLongBreak = 15;
 var minutesChecker = 25;
 //total amount of seconds
@@ -17,13 +17,13 @@ let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
 /**
- * Modal =================================================================================
+ *====================================== Modal ===========================================
  */
 
 //opens modal box
 function openModal(){
     modal.classList.remove('hidden');
-    overlay.classList.remove('hidden');
+    overlay.classList.remove('hidden');  
 }
 //closes modal box
 function closeModal() {  
@@ -54,6 +54,16 @@ function applyChanges(){
     minsToWork = wTime.value;
     minsToBreak = bTime.value;
     minsToLongBreak = lbTime.value;
+    //if timer values are less than 10 then another 0 should be added before the minute value
+    if(wTime.value < 10){
+        minsToWork = '0' + wTime.value;
+    }
+    if(bTime.value < 10){
+        minsToBreak = '0' + bTime.value;
+    }
+    if(lbTime.value < 10){
+        minsToLongBreak = '0' + lbTime.value;
+    }
     //sets changes 
     workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
     workOrBreak(minsToBreak, "Take a Break!");
@@ -78,14 +88,51 @@ function resetSettings(){
     workOrBreak(minsToBreak, "Take a Break!");
     workOrBreak(minsToWork, "Get to Work!"); 
 }
-// ================================================================================= Modal
+//increase & decrease functions for timer settings
+function addOneW(){
+    wTime.value++;
+}
+function subOneW(){
+    if(wTime.value > 0)
+    wTime.value--;
+}
+function addOneB(){
+    bTime.value++;
+}
+function subOneB(){
+    if(bTime.value > 0)
+    bTime.value--;
+}
+function addOneLB(){
+    lbTime.value++;
+}
+function subOneLB(){
+    if(lbTime.value > 0)
+    lbTime.value--;
+}
+//========================================== Modal =======================================
 
 let wrkBtn = document.getElementById('work');
 let brkBtn = document.getElementById('break');
 let longBrkBtn = document.getElementById('long-break');
-wrkBtn.onclick = () => {workOrBreak(minsToWork, "Get to Work!");}
-brkBtn.onclick = () => {workOrBreak(minsToBreak, "Take a Break!");}
-longBrkBtn.onclick = () => {workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");}
+wrkBtn.onclick = () => {
+    workOrBreak(minsToWork, "Get to Work!");
+    wrkBtn.classList.add('active');
+    brkBtn.classList.remove('active');
+    longBrkBtn.classList.remove('active');
+}
+brkBtn.onclick = () => {
+    workOrBreak(minsToBreak, "Take a Break!");
+    wrkBtn.classList.remove('active');
+    brkBtn.classList.add('active');
+    longBrkBtn.classList.remove('active');
+}
+longBrkBtn.onclick = () => {
+    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
+    wrkBtn.classList.remove('active');
+    brkBtn.classList.remove('active');
+    longBrkBtn.classList.add('active');
+}
 
 //time is set to 25:00 on window load and reload
 window.onload = () => {
@@ -98,17 +145,17 @@ let secs = 59;
 let interval;
 let isReset = false;
 
-
 /**
- * Timer =========================================================================
+ *====================================== Timer ========================================
  */
 
-/**
- * Countdown Function
- */
+//Countdown Function
 let timeHandler = () => {
     seconds.innerHTML = secs;
     minutes.innerHTML = mins;
+    if(mins < 10){
+        minutes.innerHTML = '0' + mins;
+    }
     secs--;
     time--;
     
@@ -117,7 +164,7 @@ let timeHandler = () => {
         secs = 59;
     }
     if(secs < 10) {
-        secs = '0' + secs ;
+        secs = '0' + secs;
     }
     if(mins < 0){
         mins = 0;
@@ -126,17 +173,12 @@ let timeHandler = () => {
         pause();
     }
 }
-
-/**
- * Start timer
- */
+//Start timer
 function play(){
     interval = setInterval(timeHandler, 1000);  
 }
 
-/**
- * Pauses setInterval time
- */
+//Pause setInterval time
 function pause(){
     clearInterval(interval);
  }
@@ -154,10 +196,9 @@ function pause(){
     time = minutesChecker * 60;
     isReset = true;
  }
- // ========================================================================= Timer
+ //======================================== Timer =======================================
 
- /**
-  * 
+ /** 
   * @param {*} workOrBreakMins How many minutes for each work/break option
   * @param {*} descriptText text for each work/break option
   */

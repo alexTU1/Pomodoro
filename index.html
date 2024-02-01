@@ -7,22 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header> Do it Diligently </header>
+    <header>
+        <div class="pomo-title">
+            <em>Do it Diligently</em>
+            <p>Pomodoro Timer</p>
+        </div>  
+    </header>
     <div class="modal-container">
         <div  id="modal-stuff" class="modal hidden">
-            <h2>this is the settings</h2>
+            <h2>SETTINGS</h2>
             <ul>
                 <li>
-                    <label for="w-time">Work</label>
                     <input type="number" id="w-time"   step="1" min="1" max="90">
+                    <label for="w-time">Work</label>
+                    <div class="arrow-btns">
+                        <button id="down-arr-w" onclick="subOneW()">-</button>
+                        <button id="up-arr-w" onclick="addOneW()">+</button>
+                    </div>
                 </li>
                 <li>
-                    <label for="b-time">Break</label>
                     <input type="number" id="b-time"   step="1" min="1" max="90">
+                    <label for="b-time">Break</label>
+                    <div class="arrow-btns">
+                        <button id="down-arr-b" onclick="subOneB()">-</button>
+                        <button id="up-arr-b" onclick="addOneB()">+</button>                  
+                    </div>
                 </li>
                 <li>
-                    <label for="lb-time">Long Break</label>
                     <input type="number" id="lb-time"  step="1" min="1" max="90">
+                    <label for="lb-time">Long Break</label>
+                    <div class="arrow-btns">
+                        <button id="down-arr-lb" onclick="subOneLB()">-</button>
+                        <button id="up-arr-lb" onclick="addOneLB()">+</button>
+                    </div>
                 </li>   
             </ul>
     
@@ -37,23 +54,23 @@
     <section>
         <div class="container">
             <div class="options">
-                <button id="work">Work</button>
-                <button id="break">Break</button>
-                <button id="long-break">Long Break</button>
+                <button id="work" class="option-btn active">Work</button>
+                <button id="break" class="option-btn">Break</button>
+                <button id="long-break" class="option-btn">Long Break</button>
             </div>
-            <h1>Pomodoro Timer</h1>
             <div class="time">
                 <p id="mins"></p>
                 <p id="semicol"><span>:</span></p>
                 <p id="secs"></p>  
             </div>
-            <h2 id="work-break-text"></h2>
+            
             <div class="play-pause-reset">
-                <button id="play" onclick="play()">Play</button>
-                <button id="pause" onclick="pause()">Pause</button>
-                <button id="reset" onclick="reset()">Reset</button>
-                <button id="settings" onclick="openModal()">Settings</button>
+                <button id="play" onclick="play()"><img src="assets/Play Btn.svg" alt=""></button>
+                <button id="pause" onclick="pause()"><img src="assets/Pause Btn.svg" alt=""></button>
+                <button id="reset" onclick="reset()"><img src="assets/Reset Btn.svg" alt=""></button>
+                <button id="settings" onclick="openModal()"><img src="assets/Settings Btn.svg" alt=""></button>
             </div>
+            <h2 id="work-break-text"></h2>
         </div>
     </section>
     <script src="script.js"></script>
