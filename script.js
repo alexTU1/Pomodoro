@@ -1,41 +1,40 @@
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 let displayText = document.getElementById('work-break-text');
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
 let wTime = document.getElementById('w-time');
 let bTime = document.getElementById('b-time');
 let lbTime = document.getElementById('lb-time');
+let wrkBtn = document.getElementById('work');
+let brkBtn = document.getElementById('break');
+let longBrkBtn = document.getElementById('long-break');
 
 var minsToWork = 25;
 var minsToBreak = '0' + 5;
 var minsToLongBreak = 15;
 var minutesChecker = 25;
-//total amount of seconds
 let time = minutesChecker * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
-let wrkBtn = document.getElementById('work');
-let brkBtn = document.getElementById('break');
-let longBrkBtn = document.getElementById('long-break');
-wrkBtn.onclick = () => {
-    workOrBreak(minsToWork, "Get to Work!");
-    wrkBtn.classList.add('active');
-    brkBtn.classList.remove('active');
-    longBrkBtn.classList.remove('active');
+// Event listeners for work, break, and long break buttons
+wrkBtn.addEventListener('click', () => setTimer(minsToWork, "Get to Work!", wrkBtn));
+brkBtn.addEventListener('click', () => setTimer(minsToBreak, "Take a Break!", brkBtn));
+longBrkBtn.addEventListener('click', () => setTimer(minsToLongBreak, "Uhh...make a sandwich or something.", longBrkBtn));
+
+// Functions for setting the timer based on the work/break option
+function setTimer(duration, description, activeBtn) {
+    minutesChecker = duration;
+    displayText.innerHTML = description;
+    reset();
+    setActiveButton(activeBtn);
 }
-brkBtn.onclick = () => {
-    workOrBreak(minsToBreak, "Take a Break!");
-    wrkBtn.classList.remove('active');
-    brkBtn.classList.add('active');
-    longBrkBtn.classList.remove('active');
-}
-longBrkBtn.onclick = () => {
-    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
-    wrkBtn.classList.remove('active');
-    brkBtn.classList.remove('active');
-    longBrkBtn.classList.add('active');
+
+// Function to set the active button
+function setActiveButton(activeBtn) {
+    [wrkBtn, brkBtn, longBrkBtn].forEach(btn => btn.classList.remove('active'));
+    activeBtn.classList.add('active');
 }
 
 /**
@@ -54,10 +53,10 @@ function closeModal() {
 }
 //closes modal box when you click anywhere outside of modal
 window.onclick = function(event){
-if (event.target == overlay){
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-}
+    if (event.target == overlay){
+        modal.classList.add('hidden');
+        overlay.classList.add('hidden');
+    }
 }
 
 //animate modal glide in
@@ -101,9 +100,6 @@ acBtn.addEventListener('click', () =>{
       });
 });
 
-
-
-
 //applies changes made in modal settings
 function applyChanges(){
     //if user puts nothing and presses button then timer goes to 25:00
@@ -131,21 +127,16 @@ function applyChanges(){
         minsToLongBreak = '0' + lbTime.value;
     }
     //sets changes 
-    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
-    workOrBreak(minsToBreak, "Take a Break!");
-    workOrBreak(minsToWork, "Get to Work!");
+    setTimer(minsToLongBreak, "Uhh...make a sandwhich or something.", longBrkBtn);
+    setTimer(minsToBreak, "Take a Break!", brkBtn);
+    setTimer(minsToWork, "Get to Work!", wrkBtn);
     //temporarily fixes issue where after applying changes the focus on the work/break mode choice is still highlighted but the mode is now changed back to work mode.
     wrkBtn.classList.add('active');
     brkBtn.classList.remove('active');
     longBrkBtn.classList.remove('active');
-    //closes modal after making changes
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-    console.log(time);
+    closeModal();
     reset();
 }
-
-
 
 //reset user settings to original numbers
 function resetSettings(){
@@ -156,10 +147,11 @@ function resetSettings(){
     minsToBreak = bTime.value;
     minsToLongBreak = lbTime.value;
     //sets changes after resetting to original numbers 
-    workOrBreak(minsToLongBreak, "Uhh...make a sandwhich or something.");
-    workOrBreak(minsToBreak, "Take a Break!");
-    workOrBreak(minsToWork, "Get to Work!"); 
+    setTimer(minsToLongBreak, "Uhh...make a sandwhich or something.", longBrkBtn);
+    setTimer(minsToBreak, "Take a Break!", brkBtn);
+    setTimer(minsToWork, "Get to Work!", wrkBtn); 
 }
+
 //increase & decrease functions for timer settings
 function addOneW(){
     wTime.value++;
@@ -200,7 +192,7 @@ let isReset = false;
  *====================================== Timer ========================================
  */
 
-//Countdown Function
+// Countdown Function
 let timeHandler = () => {
     seconds.innerHTML = secs;
     minutes.innerHTML = mins;
@@ -224,20 +216,17 @@ let timeHandler = () => {
         pause();
     }
 }
-//Start timer
+// Start timer
 function playTimer(){
     interval = setInterval(timeHandler, 1000);  
 }
 
-//Pause setInterval time
+// Pause setInterval time
 function pause(){
     clearInterval(interval);
  }
 
- /**
-  * Resets timer to time according to specified 
-  * timer option 'work, break, long break'
-  */
+ // Resets Timer
  function reset(){
     window.clearInterval(interval);
     minutes.innerHTML = minutesChecker;
@@ -249,14 +238,6 @@ function pause(){
  }
  //======================================== Timer =======================================
 
- /** 
-  * @param {*} workOrBreakMins How many minutes for each work/break option
-  * @param {*} descriptText text for each work/break option
-  */
- function workOrBreak(workOrBreakMins, descriptText){
-    minutesChecker = workOrBreakMins;
-    displayText.innerHTML = descriptText;
-    reset();
- }
+
 
  
