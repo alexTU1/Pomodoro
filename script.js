@@ -66,31 +66,20 @@ settingBtn.addEventListener('click', () =>{
 });
 
 //for some reason this allows for the glide in to work continuously but it does not glide out like I thought it would.
-let closeBtn = document.getElementById('close')
-closeBtn.addEventListener('click', () =>{
+let closeBtn = document.getElementById('close');
+let acBtn = document.getElementById('apply-changes');
+[closeBtn,acBtn].forEach(btn => 
+    btn.addEventListener('click', () =>{
 
-    modal.animate(
-        { transform: 'translateY(50%)',
-     top: '-30%', opacity: '0'}, 
-      {
-        duration: 500,
-        fill: 'both',
-        iterations: 1
-      });
-});
-
-let acBtn = document.getElementById('apply-changes')
-acBtn.addEventListener('click', () =>{
-
-    modal.animate(
-        { transform: 'translateY(50%)',
-     top: '-30%', opacity: '0'}, 
-      {
-        duration: 500,
-        fill: 'both',
-        iterations: 1
-      });
-});
+        modal.animate(
+            { transform: 'translateY(50%)',
+         top: '-30%', opacity: '0'}, 
+          {
+            duration: 500,
+            fill: 'both',
+            iterations: 1
+          });
+    }));
 
 //applies changes made in modal settings
 function applyChanges(){
