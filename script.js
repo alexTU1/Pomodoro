@@ -1,3 +1,4 @@
+const section = document.getElementById('section');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 let minutes = document.getElementById('mins');
@@ -18,7 +19,7 @@ let time = minutesChecker * 60;
 let secsToWork = time % 60;
 displayText.innerHTML = "Get to Work!";
 
-//time is set to 25:00 on window load and reload
+// Time is set to 25:00 on window load and reload
 window.onload = () => {
     minutes.innerHTML = minutesChecker;
     seconds.innerHTML = '0' + secsToWork;
@@ -33,17 +34,17 @@ longBrkBtn.addEventListener('click', () => setTimer(minsToLongBreak, "Uhh...make
  *====================================== Modal ===========================================
  */
 
-//opens modal box
+// Opens modal box
 function openModal(){
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');  
 }
-//closes modal box
+// Closes modal box
 function closeModal() {  
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
 }
-//closes modal box when you click anywhere outside of modal
+// Closes modal box when you click anywhere outside of modal
 window.onclick = function(event){
     if (event.target == overlay){
         modal.classList.add('hidden');
@@ -51,7 +52,7 @@ window.onclick = function(event){
     }
 }
 
-//animate modal glide in
+// Animate modal glide in
 let settingBtn = document.getElementById('settings');
 settingBtn.addEventListener('click', () =>{
 
@@ -59,7 +60,7 @@ settingBtn.addEventListener('click', () =>{
         { transform: 'translateY(-50%)',
      top: '50%', opacity: '1'}, 
       {
-        duration: 500,
+        duration: 350,
         fill: 'both',
         iterations: 1
       });
@@ -75,13 +76,65 @@ let acBtn = document.getElementById('apply-changes');
             { transform: 'translateY(50%)',
          top: '-30%', opacity: '0'}, 
           {
-            duration: 500,
+            duration: 350,
             fill: 'both',
             iterations: 1
           });
     }));
 
-//applies changes made in modal settings
+//getting background options
+var select = document.getElementById('select');
+function getBackground(){
+    switch(select.value){
+        case 'selectBackground':
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break;
+        case 'softFabric': 
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(images/engin-akyurt-rFhkipB7sA4-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break;
+        case 'woodGrain': 
+            section.style.backgroundImage = 'url(images/joshua-bartell-6vvIBTvL90A-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break;
+        case 'cactus': 
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/thomas-serer-NX2BUMsqpYY-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break;
+        case 'cafeLights': 
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break;
+        case 'comfyDog': 
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/natalia-gusakova-anUg526qras-unsplash.jpg)';
+            section.style.backgroundPosition = 'center';
+            section.style.backgroundRepeat = 'no-repeat';
+            section.style.backgroundSize = 'cover';
+            break; 
+        case 'blue': 
+            section.style.background = 'blue';
+            break;
+        case 'green': 
+            section.style.background = 'green';
+            break;
+        case 'cream': 
+            section.style.background = 'tan';
+            break;   
+    } 
+}
+
+// Applies changes made in modal settings
 function applyChanges(){
     //if user puts nothing or 0 and presses button then timer goes to 25:00
     //parseInt allows for any string numbers to be read as actual integers
@@ -98,14 +151,15 @@ function applyChanges(){
     setTimer(minsToBreak, "Take a Break!", brkBtn);
     setTimer(minsToWork, "Get to Work!", wrkBtn);
     //temporarily fixes issue where after applying changes the focus on the work/break mode choice is still highlighted but the mode is now changed back to work mode.
-    wrkBtn.classList.add('active');
-    brkBtn.classList.remove('active');
-    longBrkBtn.classList.remove('active');
+    // wrkBtn.classList.add('active');
+    // brkBtn.classList.remove('active');
+    // longBrkBtn.classList.remove('active');
+    getBackground();
     closeModal();
     reset();
 }
 
-//reset user settings to original numbers
+// Reset user settings to original numbers
 function resetSettings(){
     wTime.value = 25;
     bTime.value = 5;
@@ -117,9 +171,10 @@ function resetSettings(){
     setTimer(minsToLongBreak, "Uhh...make a sandwhich or something.", longBrkBtn);
     setTimer(minsToBreak, "Take a Break!", brkBtn);
     setTimer(minsToWork, "Get to Work!", wrkBtn); 
+    select.value = 'selectBackground';
 }
 
-//increase & decrease functions for timer settings
+// Increase & decrease functions for timer settings
 function addOneW(){
     wTime.value++;
 }

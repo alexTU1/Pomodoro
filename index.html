@@ -45,7 +45,26 @@
                 </ul>
             </div>
 
-            <div class="display-settings"></div>
+            <div class="display-settings">
+                <p>Display Settings:</p>
+                <select name="background" id="select">
+                    <option value="selectBackground">Select Background</option>
+                    <optgroup label="Textures">
+                        <option value="softFabric">Soft Fabric</option>
+                        <option value="woodGrain">Wood Grain</option>
+                        <option value="cactus">Cactus</option>
+                    </optgroup>
+                    <optgroup label="Pictures">
+                        <option value="cafeLights">Cafe Lights</option>
+                        <option value="comfyDog">Comfy Dog</option>
+                    </optgroup>
+                    <optgroup label="Colors">
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                        <option value="cream">Cream</option>
+                    </optgroup>
+                </select>
+            </div>
     
             <div class="modal-buttons">
                 <button onclick="resetSettings()">Reset</button>
@@ -55,7 +74,7 @@
         </div>
     </div>
     <div class="overlay hidden"></div>
-    <section>
+    <section id="section">
         <div class="container">
             <div class="options">
                 <button id="work" class="option-btn active">Work</button>
