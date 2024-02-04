@@ -144,6 +144,10 @@ select{
     letter-spacing: 5px;
 }
 
+select:focus{
+    outline: none;
+}
+
 .modal-buttons{
     display: flex;
     justify-content: space-between;
@@ -289,7 +293,11 @@ input::-webkit-inner-spin-button {
     background: transparent;
     border: none;
     cursor: pointer;
-    margin-inline: 30px;
+    margin-inline: 40px;
+}
+
+.play-pause-reset > button > img{
+    width: 30px;
 }
 
 .overlay{

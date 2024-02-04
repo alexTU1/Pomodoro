@@ -1,6 +1,7 @@
 const section = document.getElementById('section');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
+let titleTimer = document.getElementById('web-title');
 let minutes = document.getElementById('mins');
 let seconds = document.getElementById('secs');
 let displayText = document.getElementById('work-break-text');
@@ -87,7 +88,7 @@ var select = document.getElementById('select');
 function getBackground(){
     switch(select.value){
         case 'selectBackground':
-            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
             section.style.backgroundPosition = 'center';
             section.style.backgroundRepeat = 'no-repeat';
             section.style.backgroundSize = 'cover';
@@ -105,19 +106,19 @@ function getBackground(){
             section.style.backgroundSize = 'cover';
             break;
         case 'cactus': 
-            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/thomas-serer-NX2BUMsqpYY-unsplash.jpg)';
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url(images/thomas-serer-NX2BUMsqpYY-unsplash.jpg)';
             section.style.backgroundPosition = 'center';
             section.style.backgroundRepeat = 'no-repeat';
             section.style.backgroundSize = 'cover';
             break;
         case 'cafeLights': 
-            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(images/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg)';
             section.style.backgroundPosition = 'center';
             section.style.backgroundRepeat = 'no-repeat';
             section.style.backgroundSize = 'cover';
             break;
         case 'comfyDog': 
-            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(images/natalia-gusakova-anUg526qras-unsplash.jpg)';
+            section.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(images/natalia-gusakova-anUg526qras-unsplash.jpg)';
             section.style.backgroundPosition = 'center';
             section.style.backgroundRepeat = 'no-repeat';
             section.style.backgroundSize = 'cover';
@@ -150,10 +151,6 @@ function applyChanges(){
     setTimer(minsToLongBreak, "Uhh...make a sandwhich or something.", longBrkBtn);
     setTimer(minsToBreak, "Take a Break!", brkBtn);
     setTimer(minsToWork, "Get to Work!", wrkBtn);
-    //temporarily fixes issue where after applying changes the focus on the work/break mode choice is still highlighted but the mode is now changed back to work mode.
-    // wrkBtn.classList.add('active');
-    // brkBtn.classList.remove('active');
-    // longBrkBtn.classList.remove('active');
     getBackground();
     closeModal();
     reset();
@@ -229,6 +226,8 @@ let timeHandler = () => {
     if(time == 0){
         pause();
     }
+    //adding timer to website tab once timer is played. Allows user to see timer while on another site
+    titleTimer.innerHTML = minutes.innerHTML + ':' + seconds.innerHTML + ' | Do It Diligently';
 }
 // Start Timer
 function playTimer(){
@@ -249,6 +248,7 @@ function pause(){
     secs = 59;
     time = minutesChecker * 60;
     isReset = true;
+    titleTimer.innerHTML = 'Do It Diligently'
  }
 
  // Set timer based on the work/break option
