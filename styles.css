@@ -283,6 +283,10 @@ select:focus{
     letter-spacing: 5px;
 }
 
+.modal-container > .modal > .set-contain > ul > li > label > em{
+    font-size: 12px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -312,4 +316,38 @@ input::-webkit-inner-spin-button {
 .hidden{
     display: none;
     z-index: 0;
+}
+
+@media only screen and (390px <= width <= 430px), screen and (844px <= height <= 932px){
+    .option-btn{
+        width: 80px;
+        height: 40px;
+        font-size: .8em;
+        margin-inline: 10px;
+    }
+    .options > button:last-child{
+        width: 140px;
+    }
+    .container{
+        width: 100%;
+    }
+    .time{
+        width: 100%;
+    }
+    .time > p{
+        font-size: 7em;
+    }
+    .play-pause-reset > button > img{
+        width: 20px;
+    }
+    .play-pause-reset > button{
+        margin-inline: 20px;
+    }
+}
+@media only screen and (320px < width <= 390px), screen and (700px < height <= 844px){
+    
+}
+
+@media only screen and (width: 375px), screen and (height: 667px){
+
 }

@@ -1,3 +1,11 @@
+/**
+ * TODO 1) Fix issue where: user presses play button and/or pause button more than once repeatedly
+ * TODO 2) Fix issue where: user changes background and it doesnt change smoothly.
+ * TODO 3) Make it so user can just hold the minutes adjust buttons down
+ * //TODO 4) Add timer and display text to website tab
+ * TODO 5) Add pomodoro cycle functionality to web app 
+ */
+
 const section = document.getElementById('section');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
@@ -227,7 +235,7 @@ let timeHandler = () => {
         pause();
     }
     //adding timer to website tab once timer is played. Allows user to see timer while on another site
-    titleTimer.innerHTML = minutes.innerHTML + ':' + seconds.innerHTML + ' | Do It Diligently';
+    titleTimer.innerHTML = minutes.innerHTML + ':' + seconds.innerHTML + ' - ' + displayText.innerHTML;
 }
 // Start Timer
 function playTimer(){
